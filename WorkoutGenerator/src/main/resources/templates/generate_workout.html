@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <title>Workout Generator</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/tooplate-gymso-style.css">
+
+    <style>
+    #link1 {
+    float: right;
+    margin-right: 100px;
+    }
+
+    .link {
+    background-color: #001f3f;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    }
+
+    .link:hover {
+    background-color: #555;
+    }
+
+    .link:active {
+    background-color: black;
+    }
+
+    .link:visited {
+    background-color: #ccc;
+    }
+    </style>
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+<!-- MENU BAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="home">Maciej Nestorowicz</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item">
+                    <a href="home" class="nav-link smoothScroll">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="about_me" class="nav-link smoothScroll">About Me</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="my_experience" class="nav-link smoothScroll">My Experience</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact" class="nav-link smoothScroll">Contact Me</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="home" class="nav-link smoothScroll">LOG OUT</a>
+                </li>
+            </ul>
+
+            <ul class="social-icon ml-lg-3">
+                <li><a href="https://www.facebook.com/maciej.nestorowicz" class="fa fa-facebook"></a></li>
+                <li><a href="https://www.linkedin.com/in/maciej-nestorowicz-a89238156/?locale=en_US" class="fa fa-linkedin"></a></li>
+                <li><a href="https://github.com/MaciejNestorowicz" class="fa fa-github"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<br><br><br><br><br>
+
+<a class="link" id="link1" href="user_page">User Page</a>
+
+<form action="#" th:action="@{/update_user}" th:object="${userChangeDTO}" method="post">
+    <p>
+        What is your advancement level?
+        <select th:field="*{advancementLevel}">
+            <option th:value="BEGINNER" th:text="Beginner"></option>
+            <option th:value="ADVANCED" th:text="Advanced" ></option>
+        </select>
+    </p>
+    <p>
+        What is your desired workout type?
+        <select th:field="*{workoutType}">
+            <option th:value="STRENGTH" th:text="Strength"></option>
+            <option th:value="ENDURANCE" th:text="Endurance"></option>
+        </select>
+    </p>
+    <p>
+        <input type="submit" value="Submit"/>
+    </p>
+</form>
+
+<!-- SCRIPTS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>

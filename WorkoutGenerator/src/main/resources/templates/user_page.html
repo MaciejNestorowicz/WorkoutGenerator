@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <title>User Page</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+
+    <style>
+    .user{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    background-color: #001f3f;
+    }
+
+    #link1 {
+    float: left;
+    margin-left: 500px;
+    }
+
+    #link2 {
+    float: right;
+    margin-right: 500px;
+    }
+
+    .link {
+    background-color: #0047b3;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    }
+
+    .link:hover {
+    background-color: #555;
+    }
+
+    .link:active {
+    background-color: black;
+    }
+
+    .link:visited {
+    background-color: #ccc;
+    }
+    </style>
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/tooplate-gymso-style.css">
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+<!-- MENU BAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="home">Maciej Nestorowicz</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item">
+                    <a href="home" class="nav-link smoothScroll">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="about_me" class="nav-link smoothScroll">About Me</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="my_experience" class="nav-link smoothScroll">My Experience</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact" class="nav-link smoothScroll">Contact Me</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="home" class="nav-link smoothScroll">LOG OUT</a>
+                </li>
+            </ul>
+
+            <ul class="social-icon ml-lg-3">
+                <li><a href="https://www.facebook.com/maciej.nestorowicz" class="fa fa-facebook"></a></li>
+                <li><a href="https://www.linkedin.com/in/maciej-nestorowicz-a89238156/?locale=en_US" class="fa fa-linkedin"></a></li>
+                <li><a href="https://github.com/MaciejNestorowicz" class="fa fa-github"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<br><br><br><br><br>
+
+<p class="user" th:text="'Hi ' + ${user.fullName}"> User</p>
+<br>
+<a class="link" id="link1" href="generate_workout">New workout</a> <a class="link" id="link2" href="training_journal">Training Journal</a>
+<br><br><br><br><br>
+
+<div>
+    <div class="container">
+        <div class="card">
+            <div class="card-block">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Your current workout</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="exerciseList : ${workout.exercises}">
+                        <td th:each="exercise : ${exerciseList}" th:text="${exercise.name}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+
+<div>
+    <div class="container">
+        <div class="card">
+            <div class="card-block">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Your directions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:switch="${user.workoutType}">
+                        <td th:case="${T(org.bitbucket.macko9909.workout.model.WorkoutType).STRENGTH}">Do 12 reps for each exercise but for ABS exercise do 30 reps</td>
+                        <td th:case="${T(org.bitbucket.macko9909.workout.model.WorkoutType).ENDURANCE}">Do 20 reps for each exercise but for ABS exercise do 50 reps</td>
+                    </tr>
+                    <tr th:switch="${user.advancementLevel}">
+                        <td th:case="${T(org.bitbucket.macko9909.workout.model.AdvancementLevel).BEGINNER}">Do 4 rounds of circuit with 4 min rest between circuits</td>
+                        <td th:case="${T(org.bitbucket.macko9909.workout.model.AdvancementLevel).ADVANCED}">Do 6 rounds of circuit with 3 min rest between circuits</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+
+<!-- SCRIPTS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>
